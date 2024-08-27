@@ -1,0 +1,33 @@
+OBS Studio
+
+Você pode gravar o passo a passo do código antes, exibir e interromper quando precisar tirar dúvidas do pessoal
+ou organizar tipo uma aula presencial, quando vc usa o slide, etc.
+
+sudo rm /etc/apt/preferences.d/nosnap.pref
+sudo apt update
+sudo apt install snapd
+sudo snap install obs-studio
+
+https://snapcraft.io/install/obs-studio/mint#install
+
+Desinstalar
+sudo snap remove obs-studio
+
+OBS Studio Tutorial - Guia Definitivo para Transmissões (2021)
+https://www.youtube.com/watch?v=JJZwrRZJZfQ
+
+Iniciantes
+https://www.youtube.com/watch?v=Jytyxt2VHYs
+https://www.youtube.com/watch?v=_CSUt4jjZr4
+
+https://obsproject.com/wiki/OBS-Studio-Quickstart
+
+Fazendo lives
+https://www.youtube.com/watch?v=ZJDH6alecAM
+
+Como usar o OBS Studio para fazer Lives - Tutorial MEGA COMPLETO
+https://www.youtube.com/watch?v=ZJDH6alecAM
+
+Lives em geral são mais gravadas no no twitch.tv do que no Youtube
+
+

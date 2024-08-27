@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <title>Busca CEP</title>
+</head>
+<body>
+
+<div class="text-center">
+    <h1>Busca CEP</h1>
+    <p>Digite o CEP e tecle TAB</p>p
+<form>
+  <div class="frm-group">
+    <label>CEP</label>
+    <input type="text" name="cep" />
+  </div>
+  
+   <div class="frm-group">
+      <label>Rua</label>
+      <input type="text" name="rua" />
+    </div>
+    
+    <div class="frm-group">
+      <label>Bairro</label>
+      <input type="text" name="bairro" />
+    </div>
+    
+    <div class="frm-group">
+      <label>Cidade</label>
+      <input type="text" name="cidade" />
+    </div>
+    
+    <div class="frm-group">
+      <label>Estado</label>
+      <input type="text" name="estado" />
+    </div>
+</form>
+</div>
+<style>
+body{
+  background-color: black;
+  color: white;
+}  
+.frm-group{
+  padding:5px;
+}
+.frm-group label{
+  display: block;
+}
+
+.frm-group:nth-child(1){
+  border: 1px solid #CCC;
+  padding: 10px 5px;
+}
+</style>
+
+<script>
+(function(){
+
+  const cep = document.querySelector("input[name=cep]");
+  
+  cep.addEventListener('blur', e=> {
+  		const value = cep.value.replace(/[^0-9]+/, '');
+      const url = `https://viacep.com.br/ws/${value}/json/`;
+      
+      fetch(url)
+      .then( response => response.json())
+      .then( json => {
+      		
+          if( json.logradouro ) {
+          	document.querySelector('input[name=rua]').value = json.logradouro;
+            document.querySelector('input[name=bairro]').value = json.bairro;
+            document.querySelector('input[name=cidade]').value = json.localidade;
+            document.querySelector('input[name=estado]').value = json.uf;
+          }      
+      });           
+  });
+
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

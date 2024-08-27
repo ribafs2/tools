@@ -1,0 +1,7 @@
+portalocker
+psutil
+requests-toolbelt
+pytest
+pytest-mysql
+pytest-xdist
+zstandard

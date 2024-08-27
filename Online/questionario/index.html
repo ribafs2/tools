@@ -1,0 +1,123 @@
+
+<!-- TWO STEPS TO INSTALL JAVASCRIPT QUIZ:
+
+  1.  Copy the coding into the HEAD of your HTML document
+  2.  Add the last code into the BODY of your HTML document  -->
+
+<!-- STEP ONE: Paste this code into the HEAD of your HTML document  -->
+
+<HEAD>
+ <meta charset="UTF-8"> 
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+var ans = new Array;
+var done = new Array;
+var yourAns = new Array;
+var explainAnswer = new Array;
+
+var score = 0;
+ans[1] = "b";
+ans[2] = "b";
+ans[3] = "a";
+ans[4] = "c";
+ans[5] = "b";
+
+explainAnswer[1]="José Ferreira nasceu em 18/01";
+explainAnswer[2]="Julieta nsceu em 18/05";
+explainAnswer[3]="Aparecida é paulista";
+explainAnswer[4]="O casal teve 9 filhos, dos quais 8 estão vivos";
+explainAnswer[5]="O nome do mais velho é José Maria, mas entre os vivos é Ribamar";
+
+function Engine(question, answer) {
+yourAns[question]=answer;
+}
+
+function Score(){
+var answerText = "How did you do?\n------------------------------------\n";
+for(i=1;i<=5;i++){
+   answerText=answerText+"\nQuestion :"+i+"\n";
+  if(ans[i]!=yourAns[i]){
+    answerText=answerText+"\nA resposta correta é "+ans[i]+"\n"+explainAnswer[i]+"\n";
+  }
+  else{
+    answerText=answerText+" \nCorrect! \n";
+    score++;
+  }
+}
+
+answerText=answerText+"\n\nSeu total de pontos foi : "+score+"\n";
+
+//now score the user
+answerText=answerText+"\nObs: ";
+if(score<=0){
+answerText=answerText+"Você precisa conhecer um pouco mais sobre a família ;)";
+}
+if(score>=1 && score <=2){
+answerText=answerText+"Precisa conhecer mais	";
+}
+if(score>=3 && score <=3){
+answerText=answerText+"Não sabe quase nada";
+}
+if(score>4){
+answerText=answerText+"Voc conhece bem a família!";
+}
+
+alert(answerText);
+
+}
+//  End -->
+</script>
+
+</HEAD>
+
+<!-- STEP TWO: Copy this code into the BODY of your HTML document  -->
+
+<BODY>
+
+<DIV ALIGN="CENTER">
+<h1>Famlia Ferreira de Sousa</h1>
+<b>Teste seus conhecimentos sobre a família!</b>
+<hr>
+<FORM>
+<b>1. Qual o dia e mês do aniversário do José Ferreira?</b><br>
+<input type=radio name="q1" value="a" onClick="Engine(1, this.value)">a) 18/01<br>
+<input type=radio name="q1" value="b" onClick="Engine(1, this.value)">b) 20/01<br>
+<input type=radio name="q1" value="c" onClick="Engine(1, this.value)">c) 21/01<br>
+<input type=radio name="q1" value="d" onClick="Engine(1, this.value)">d) 22/01<p>
+<b>2. Qual o dia e mês do aniversário da Julieta?</b><br>
+<input type=radio name="q2" value="a" onClick="Engine(2, this.value)">a) 20/01<br>
+<input type=radio name="q2" value="b" onClick="Engine(2, this.value)">b) 18/05<br>
+<input type=radio name="q2" value="c" onClick="Engine(2, this.value)">c) 15/04<br>
+<input type=radio name="q2" value="d" onClick="Engine(2, this.value)">d) 18/04<p>
+<b>3. Onde nasceu a Aparecida?</b><br>
+<input type=radio name="q3" value="a" onClick="Engine(3, this.value)">a) São Paulo<br>
+<input type=radio name="q3" value="b" onClick="Engine(3, this.value)">b) Boa Viagem<br>
+<input type=radio name="q3" value="c" onClick="Engine(3, this.value)">c) Fortaleza<br>
+<input type=radio name="q3" value="d" onClick="Engine(3, this.value)">d) Rio de Janeiro <p>
+<b>4. Quantos filhos tiveram o casal Julieta e José?</b><br>
+<input type=radio name="q4" value="a" onClick="Engine(4, this.value)">8<br>
+<input type=radio name="q4" value="b" onClick="Engine(4, this.value)">6<br>
+<input type=radio name="q4" value="c" onClick="Engine(4, this.value)">9<br>
+<input type=radio name="q4" value="d" onClick="Engine(4, this.value)">5<p>
+<b>5. Nome do filho mais velho da família Ferreira de Sousa </b><br>
+<input type=radio name="q5" value="a" onClick="Engine(5, this.value)">Ribamar<br>
+<input type=radio name="q5" value="b" onClick="Engine(5, this.value)">José Maria<br>
+<input type=radio name="q5" value="c" onClick="Engine(5, this.value)">Aparecida<br>
+<input type=radio name="q5" value="d" onClick="Engine(5, this.value)">Antônio<p>
+<CENTER>
+<input type=button onClick="Score()" value="Resultado">
+</CENTER>
+</FORM>
+</DIV>
+
+
+<p><center>
+<font face="arial, helvetica" size"-2">Free JavaScripts provided<br>
+by <a href="http://javascriptsource.com">The JavaScript Source</a></font>
+</center><p>
+
+<!-- Script Size:  4.69 KB -->

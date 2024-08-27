@@ -1,0 +1,17 @@
+*.o
+*.pyc
+*.so
+/objs
+.build
+*.out
+*.bin
+.DS_Store
+
+.idea
+build
+*.iml
+/cmake-build-*
+
+dev
+kphp
+kphp_out

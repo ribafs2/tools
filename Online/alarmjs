@@ -1,0 +1,17 @@
+var start = '2017/03/11 12:00:00';
+var end = '2017/03/11 12:00:02';
+
+// time in milliseconds:
+var time =  Math.abs(new Date(start) - new Date(end));
+
+setTimeout(function(){ 
+    alert("Hello"); 
+}, time);
+
+
+x = new Date();
+x.setSeconds(x.getSeconds() + 5);
+var t = new Date(x) - new Date();
+setTimeout(function(){ alert("Hello"); }, t);
+
+

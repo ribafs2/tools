@@ -1,0 +1,66 @@
+Procurar e sobrescrever usando Expressões regulares
+
+Se temos uma lista de palavras na vertical, assim:
+
+palavra1
+aplavra2
+palavra3
+etc
+
+E queremos criar uma string na horizontal formada por cada palavra delimitada por aspas e separadas por vírgula, assim:
+
+'palavra1', 'aplavra2', 'palavra3', ...
+
+- Copiamos e colamos a lista de palavras em um novo arquivo do VSCode do tipo Plain text
+
+- Teclamos Ctrl+H para procurar e sobrescrever
+
+- Na caixa de cima entramos com \n para que ele busque pelo caractere de final de linha. Lembrar de clicar no asterismo ao final para que a busca use regex
+
+- Na caixa de baixo entrar com ',  (apóstrofo e vínrgula)
+
+- Então clicar em Replace All. Ficará assim, na horizontal:
+
+palavra1',aplavra2',palavra3',...
+
+Agora precisaremos adicionar uma aspa ao início das palavras. Então tecle Ctrl+H novamente e na caixa superior, limpe e entre uma vírgula
+
+- Na caixa de baixo entre , ' (vírgula, espaço e apóstrofo) e ficará assim:
+
+palavra1', 'aplavra2', 'palavra3', ...
+
+Para que fique completa resta apenas entrar manualmente com um apóstrofo (aspa simples) no inínio da primeira palavra e ao final da última.
+
+
+Eliminar todas as linhas em branco de um arquivo ou de sequência de palavras
+
+
+Se tenho a sequência de palavras:
+
+palavra1
+aplavra2
+
+palavra3
+palavra4
+
+palavra5
+...
+
+Para remover as linhas em branco copie e cole num arquivo tipo Plain text do VSCode
+
+Tecle Ctrl+H e na caixa superior digite
+
+^(?:[\t ]*(?:\r?\n|\r))+
+
+Na de baixo deixe em branco
+
+Então clique em Replace All
+
+
+Remover todas as linhas em branco de um arquivo no VSCode
+
+Ctrl+H
+
+^(?:[\t ]*(?:\r?\n|\r))+
+
+https://www.littlebigtomatoes.com/easily-remove-empty-lines-using-regular-expression-in-visual-studio-code/

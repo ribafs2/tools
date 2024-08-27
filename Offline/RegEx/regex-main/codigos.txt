@@ -1,0 +1,794 @@
+Telefone (página 9)
+
+$tel = '(85)-99440-7071';	//85994407071 ou (85)99440-7071 ou (85)-99440-7071
+if(preg_match("/\(?\d{2}\)-?\s?\d{5}\-?\d{4}/", $tel)) {
+  print "o telefone é válido";
+}else{
+  print "erro";
+}
+
+
+Máscara (página 10)
+
+function format_string($mask, $str, $ch = '#') {
+    $c = 0;
+    $rs = '';
+
+    // Aqui usamos strlen() pois não há preocupação com o charset da máscara.
+    for ($i = 0; $i < strlen($mask); $i++) {
+        if ($mask[$i] == $ch) {
+            $rs .= $str[$c];
+            $c++;
+        } else {
+            $rs .= $mask[$i];
+        }
+    }
+
+    return $rs;
+}
+
+$str = '85994407071'; // Exemplo para telefone
+echo format_string('(##)-#####-####', $str);
+
+$str = '12042024'; // Exemplo para datas
+echo '<br />' . format_string('##/##/####', $str);
+
+
+Página 11
+
+<?php
+preg_match('/(foo)(bar)(baz)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+print_r($matches);
+
+
+<?php
+// O "i" após o delimitador padão indica uma busca case-insensitiva
+
+if (preg_match("/php/i", "PHP is the web scripting language of choice.")) {
+ echo "A match was found.";
+} else {
+ echo "A match was not found.";
+}
+
+
+Página 12
+
+Uma solução melhor para validar a sintaxe do email é usar filter_var.
+if (filter_var('test+email@fexample.com', FILTER_VALIDATE_EMAIL)) {
+- echo "Your email is ok.";
+} else {
+- echo "Wrong email address format.";
+}
+
+$username = "user_name12";
+if (preg_match('/^[a-z\d_]{5,20}$/i', $username)) {
+- echo "Your username is ok.";
+} else {
+- echo "Wrong username format.";
+}
+ 
+Validar domínio
+$url = "http://komunitasweb.com/";
+if (preg_match('/^(http|https|ftp):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i', $url)) {
+- echo "Your url is ok.";
+} else {
+- echo "Wrong url.";
+}
+ 
+ 
+Extraia o nome de domínio de determinado URL
+$url = "http://komunitasweb.com/index.html";
+preg_match('@^(?:http://)?([^/]+)@i', $url, $matches);
+$host = $matches[1];
+echo $host;
+
+Destaque uma palavra no conteúdo
+
+$text = "Sample sentence from KomunitasWeb, regex has become popular in web programming. Now we learn regex. According to wikipedia, Regular expressions (abbreviated as regex or regexp, with plural forms regexes, regexps, or regexen) are written in a formal language that can be interpreted by a regular expression processor";
+$text = preg_replace("/\b(regex)\b/i", '<span style="background:#5fc9f6">\1</span>', $text);
+echo $text;
+
+
+$images = array();
+preg_match_all('/(img|src)=("|')[^"'>]+/i', $data, $media);
+unset($data);
+$data=preg_replace('/(img|src)("|'|="|=')(.*)/i',"$3",$media[0]);
+foreach($data as $url)
+{
+    $info = pathinfo($url);
+    if (isset($info['extension']))
+    {
+        if (($info['extension'] == 'jpg') ||
+        ($info['extension'] == 'jpeg') ||
+        ($info['extension'] == 'gif') ||
+        ($info['extension'] == 'png'))
+        array_push($images, $url);
+    }
+}
+
+Corresponder valores de cores hexadecimais
+Outra ferramenta interessante para desenvolvedores web! Ele permite combinar/validar um valor de cor hexadecimal.
+
+$string = "#555555";
+if (preg_match('/^#(?:(?:[a-fd]{3}){1,2})$/i', $string)) { 
+echo "example 6 successful.";
+} 
+
+Verifique a complexidade da senha
+Esta expressão regular testará se a entrada consiste em 6 ou mais letras, dígitos, sublinhados e hifens.
+A entrada deve conter pelo menos uma letra maiúscula, uma letra minúscula e um dígito.
+
+'A(?=[-_a-zA-Z0-9]*?[A-Z])(?=[-_a-zA-Z0-9]*?[a-z])(?=[-_a-zA-Z0-9]*?[0-9])[-_a-zA-Z0-9]{6,}z'
+
+Gere Emoticons Automaticamente
+Outra função usada pelo WordPress. Este permite substituir automaticamente um símbolo de emoticon por uma imagem.
+
+$texte='A text with a smiley :-)';
+echo str_replace(':-)','<img src="smileys/souriant.png">',$texte);
+$words = [ "Seven", "even", "Maven", "Amen", "Leven" ];
+$pattern = "/.even/";
+
+
+foreach ($words as $word) {
+
+  if (preg_match($pattern, $word)) {
+    echo "$word matches the pattern\n";
+  } else {
+    echo "$word does not match the pattern\n";
+  }
+}
+
+
+$words = [ "color", "colour", "comic", "colourful", "colored", - "cosmos", "coloseum", "coloured", "colourful" ];
+$pattern = "/colou?r/";
+
+foreach ($words as $word) {
+  if (preg_match($pattern, $word)) {
+    echo "$word matches the pattern\n";
+  } else {
+    echo "$word does not match the pattern\n";
+  }
+}
+
+Temos quatro nove no array $words.
+$pattern = "/colou?r/";
+
+
+$names = [ "Jane", "Thomas", "Robert", "Lucy", "Beky", 
+- "John", "Peter", "Andy" ];
+
+$pattern = "/Jane|Beky|Robert/";
+
+foreach ($names as $name) {
+
+  if (preg_match($pattern, $name)) {
+    echo "$name is my friend\n";
+  } else {
+    echo "$name is not my friend\n";
+  }
+}
+
+Temos oito nomes no array $names.
+
+$pattern = "/Jane|Beky|Robert/";
+
+$words = [ "sit", "MIT", "fit", "fat", "lot" ];
+
+$pattern = "/[fs]it/";
+
+foreach ($words as $word) {
+
+  if (preg_match($pattern, $word)) {
+    echo "$word matches the pattern\n";
+  } else {
+    echo "$word does not match the pattern\n";
+  }
+}
+We define a character set with two characters. 
+$pattern = "/[fs]it/";
+
+
+$emails = [ "luke@gmail.com", "andy@yahoocom", "34234sdfa#2345", "f344@gmail.com"];
+
+# regular expression for emails
+$pattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,18}$/";
+
+foreach ($emails as $email) {
+
+  if (preg_match($pattern, $email)) {
+    echo "$email matches \n";
+  } else {
+    echo "$email does not match\n";
+  }
+}
+
+
+Note that this example provides only one solution. It does not have to be the best one. 
+$pattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,18}$/";
+
+
+$pattern = "/ca[kf]e/";
+$text = "He was eating cake in the cafe.";
+$matches = preg_match_all($pattern, $text, $array);
+echo $matches . " matches were found.";
+
+
+$pattern = "/color/i";
+$text = "Color red is more visible than color blue in daylight.";
+$matches = preg_match_all($pattern, $text, $array);
+echo $matches . " matches were found.";
+
+Alguns exemplos usando PHP
+
+preg_match('/(foo)(bar)(baz)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+//var_dump($matches);exit;
+print $matches[0][0].'<br>';
+print $matches[1][0].'<br>';
+print $matches[2][0].'<br>';
+print $matches[3][0].'<br>';
+$subject = "abcdef";
+$pattern = '/^def/';
+preg_match($pattern, substr($subject,3), $matches, PREG_OFFSET_CAPTURE);
+var_dump($matches);
+
+$string = 'orato';
+if (preg_match('/^rato/', $string)) {
+- print 'A string comeca com "rato"';
+} else {
+- print 'A string nao comeca com "rato"';
+}
+
+$string = 'barato';
+if (preg_match('/rato$/', $string)) {
+- print 'A string termina com "rato"';
+} else {
+- print 'A string nao termina com "rato"';
+}
+
+$string = 'gato';
+if (preg_match('/rato|gato/', $string)) {
+- print 'A string contém gato';
+} else {
+- print 'A string não contém gato';
+}
+
+$string = 'gato';
+// Exemplo: checar se a string comeca com "r" ou "g", seguido de "at" e termina com "a" ou "o". Somente at é fixo
+if (preg_match('/^[rg]at[ao]$/', $string)) {
+- print 'Sim';
+} else {
+- print 'Não';
+}
+
+// Exemplo: checar se a string comeca com "x", seguido por uma letra minuscula, depois um numero, e termina com
+// uma letra ou numero ou @
+if (preg_match('/^[x][[:lower:]][\d][a-z0-9@]$/', $string)) {
+- // Por exemplo: "xa0a", "xb11", "xb1@"
+}
+
+// Mesmo exemplo, mas usando apenas sequencias de escape
+if (preg_match('/^x\w\d[\w\d@]$/', $string)) {
+- // Por exemplo: "xa0a", "xb11", "xb1@"
+}
+
+// Exemplo: a string precisa começar com "a" ou "b", depois seguir com qualquer caractere, exceto o "x" e "y"
+
+if (preg_match('/^[ab][^xy]$/', $string)) {
+ // Por exemplo: "a1", "bd"
+} else {
+  // Por exemplo: "ax", "ay", "bx", "by", "k1"
+}
+
+// Capturar o prefixo de uma placa de carro (3 letras) e o sufixo (4 numeros)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z][A-Z][A-Z])-([0-9][0-9][0-9][0-9])$/', $string, $partes)) {
+  echo $partes[0]; // ABC-1234
+  echo $partes[1]; // ABC
+  echo $partes[2]; // 1234
+}
+
+// Capturar o prefixo de uma placa de carro (3 letras)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z][A-Z][A-Z])-(?:[0-9][0-9][0-9][0-9])$/', $string, $partes)) {
+  echo $partes[0];     // ABC-1234
+  echo $partes[1];     // ABC
+}
+
+// Capturar a sigla de segunda-feira ou terça feira
+$string = 'terça-feira';
+if (preg_match('/^(?|(seg)unda|(ter)ça)-feira$/', $string, $partes)) {
+  echo $partes[0];     // ABC-1234
+  echo $partes[1];     // ter
+}
+
+// Capturar o prefixo de uma placa de carro (3 letras) e o sufixo (4 numeros)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z]{3})-([0-9]{4})$/', $string, $partes)) {
+  echo $partes[0]; // ABC-1234
+  echo $partes[1]; // ABC
+  echo $partes[2]; // 1234
+}
+
+// Checar se a string eh um CPF formatado
+if (preg_match('/^\d{3}\.\d{3}\.\d{3}-\d{2}$/', $string, $partes)) {
+  // O CPF esta formatado
+}
+
+$cpf = '12106836368';
+$cpf = preg_replace("/[^0-9]/", "", $cpf);
+echo $cpf;
+
+para validar o nome do usuário quando é enviado a seu aplicativo: 
+^[A-Za-z][A-Za-z0-9_]{2,9}$.
+
+// Checar se a string eh formada por 3 ou mais digitos, seguido ou nao de hifen,
+// seguido de um ou mais digitos, seguido de 0 ou mais letras
+if (preg_match('/^\d{3,}-?\d+[a-z]*$/', $string, $partes)) {
+// Por exemplo: "1234", "123-4", "12345", "1234-567", "1234ab", "123-4a"
+} else {
+// Por exemplo: "12", "1-2", "12-3", "123-", "123-a"
+}
+
+
+
+<?php
+// create a string
+$string = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
+// try to match the beginning of the string
+if(preg_match("/^abc/", $string))
+  {
+  // if it matches we echo this line
+  echo 'The string begins with abc';
+  }
+else
+  {
+  // if no match is found echo this line
+  echo 'No match found';
+  }
+?> 
+
+
+<?php
+// create a string
+$string = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
+// try to match our pattern at the end of the string
+if(preg_match("/89\z/i", $string)) // z - finaliza
+    {
+  // if our pattern matches we echo this 
+    echo 'The string ends with 89';
+    }else{
+   // if no match is found we echo this line
+    echo 'No match found';
+    }
+?> 
+
+<?php
+// create a string
+$string = 'big';
+
+// Search for a match
+echo preg_match("/b[aoiu]g/", $string, $matches);
+
+
+
+<?php
+// create a string
+$string = 'abcefghijklmnopqrstuvwxyz0123456789';
+
+// echo our string
+preg_match("/[^b]/", $string, $matches);
+
+// loop through the matches with foreach
+foreach($matches as $key=>$value)
+    {
+    echo $key.' -> '.$value; // 0 -> a
+    }
+?> 
+
+
+<?php
+// create a string
+$string = 'abcefghijklmnopqrstuvwxyz0123456789';
+
+// try to match all characters not within out pattern
+preg_match_all("/[^b]/", $string, $matches);
+
+// loop through the matches with foreach
+foreach($matches[0] as $value)
+    {
+    echo $value;
+    }
+?> 
+
+
+<?php
+
+// create a string
+$string = '12345678';
+
+// look for a match
+echo preg_match("/1234-?5678/", $string, $matches);
+
+
+<?php
+// create a string
+$string = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
+// try to match our pattern
+if(preg_match("/^ABC/i", $string))
+{
+// echo this is it matches
+echo 'The string begins with abc';
+}
+else
+{
+// if not match is found echo this line
+echo 'No match found';
+}
+
+
+<?php
+// create a string
+$string = 'We will replace the word foo';
+
+// substitute the word for and put in bar
+$string = preg_replace("/foo/", 'bar', $string);
+
+// echo the new string
+echo $string;
+
+
+<?php
+
+// the string to match against
+$string = 'The cat sat on the mat';
+
+// match the beginning of the string
+echo preg_match("/^The/", $string); // returns 1
+
+// match the end of the string
+echo preg_match("/mat\z/", $string); // returns 1
+
+// match anywhere in the string
+echo preg_match("/dog/", $string); // returns 0 as no match was found for dog.
+
+
+<?php
+$cpf = '12106836368';
+$cpf = preg_replace("/[^0-9]/", "", $cpf);
+echo $cpf;
+
+para validar o nome do usuário quando é enviado a seu aplicativo: 
+^[A-Za-z][A-Za-z0-9_]{2,9}$.
+
+<?php
+$cep = '22710-045';
+$names = array('Diogo', 'Renato', 'Gomes', 'Thiago', 'Leonardo');
+$text = 'Lorem ipsum dolor sit amet, consectetuer adipiscing.';
+ 
+// Validação de CEP
+$er = '/^(\d){5}-(\d){3}$/';
+if(preg_match($er, $cep)) {
+- echo "O cep casou com a expressão.";
+}
+// Resultado: O cep casou com a expressão.
+ 
+// Busca e substitui nomes que tenham "go", case-insensitive
+$er = '/go/i';
+$pregReplace = preg_replace($er, 'GO', $names);
+print_r($pregReplace);
+// Resultado: DioGO, Renato, GOmes, ThiaGO, Leonardo
+ 
+// Busca e substitui nomes que terminam com "go"
+$er = '/go$/';
+$pregFilter = preg_filter($er, 'GO', $names);
+print_r($pregFilter);
+// Resultado: DioGO, ThiaGO
+ 
+// Resgatar nomes que começam com "go", case-insensitive
+$er = '/^go/i';
+$pregGrep = preg_grep($er, $names);
+print_r($pregGrep);
+// Resultado: Gomes
+ 
+// Divide o texto por pontos e espaços, que podem ser seguidos por espaços
+$er = '/[[:punct:]\s]\s*/';
+$pregSplit = preg_split($er, $text);
+print_r($pregSplit);
+// Resultado: Array de palavras
+ 
+// callback, retorna em letras maiúsculas
+$callback = function($matches) {
+- return strtoupper($matches[0]);
+};
+ 
+// Busca e substitui de acordo com o callback
+$er = '/(.*)go$/';
+$pregCallback = preg_replace_callback($er, $callback, $names);
+print_r($pregCallback);
+// Resultado: DIOGO, Renato, Gomes, THIAGO, Leonardo
+
+
+
+Checar se uma string segue determinado padrão
+
+// Exemplo
+$string = 'ABC-1234';
+
+// Checar se a string segue o padrao de uma placa de carro
+if (preg_match('/^[A-Z]{3}\-[0-9]{4}$/', $string)) {
+- // A string eh uma placa de carro valida
+} else {
+- // A string nao eh uma placa de carro valida
+}
+
+Capturar pedaços de uma string
+
+// Exemplo
+$cpf = '123.456.789-01';
+
+// Capturar o digito verificador do CPF
+if (preg_match('/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-([0-9]{2})$/', $cpf, $partes)) {
+- $digito_verificador = $partes[1];
+}
+
+Substituir pedaços de uma string por outra sequência de caracteres
+
+// Exemplo 1: substituir vogais por "x":
+$string = 'abcdefgh123';
+$string2 = preg_replace('/[aeiou]/', 'x', $string);
+
+// Exemplo 2: remover numeros de uma string
+$string = 'abc123';
+$string2 = preg_replace('/[0-9]/', '', $string);
+
+// Exemplo 3: transformar um CPF com numeros em um CPF formatado
+$string = '12345678901';
+$string2 = preg_replace('/^([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})$/', '$1.$2.$3-$4', $string);
+
+// Exemplo 4: transformar uma data no formato YYYY-MM-DD em DD/MM/YYYY
+$string = '2015-02-01';
+$string2 = preg_replace('/^([0-9]{4})\-([0-9]{2})\-([0-9]{2})$/', '$3/$2/$1', $string);
+
+// Exemplo 5: Converter as vogais de uma string para maiuscula
+$string = 'abcdefgh123';
+$string2 = preg_replace_callback(
+- '/[aeiou]/',
+- function($partes) {
+    return strtoupper($partes[0]);
+- },
+- $string
+);
+
+Quebrar uma string em um array utilizando uma expressão regular
+
+// Exemplo: quebrar a string quando encontrar ponto ou virgula
+$string = 'abc, def. ghi';
+$array = preg_split('/[,\.]/', $string);
+
+// Capturar o prefixo de uma placa de carro (3 letras) e o sufixo (4 numeros)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z][A-Z][A-Z])-([0-9][0-9][0-9][0-9])$/', $string, $partes)) {
+- echo $partes[0]; // ABC-1234
+- echo $partes[1]; // ABC
+- echo $partes[2]; // 1234
+}
+
+// Capturar o prefixo de uma placa de carro (3 letras)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z][A-Z][A-Z])-(?:[0-9][0-9][0-9][0-9])$/', $string, $partes)) {
+- echo $partes[0];     // ABC-1234
+- echo $partes[1];     // ABC
+}
+
+
+<?php
+$meuPost = nl2br($_POST["msg"]);
+$pattern = array(
+	"/\[b](.*?)\[\/b]/",
+	"/\[i](.*?)\[\/i]/",
+	"/\[img](.*?)\[\/img]/"
+); //sim! pode definir arrays de coisas pra achar e/ou substituir!
+$replace = array(
+	"<b>$1</b>",
+	"<i>$1</i>",
+	"<img src=\"$1\" />"
+)
+echo preg_replace($pattern, $replace, $meuPost);
+
+<?php
+// Um variável qualquer
+$texto = 'Eu sou lindo!';
+
+// Expressão regular
+$expressao = '/lindo/';
+
+// Retorna true se a expressão existir no texto
+$verifica = preg_match( $expressao,  $texto);
+
+// Verifica se existe
+if ( $verifica ) {
+	echo "A expressão $expressao existe no texto.";
+} else {
+	echo "A expressão $expressao não existe no texto.";
+}
+
+<?php
+// Um texto que tem uma data
+$texto = 'Eu nasci em 20/04/1987. Fiz 27 anos em 2014.';
+
+// Expressao regular
+$expressao = '/[0-9]{2}/[0-9]{2}/[0-9]{4}/';
+
+// Verifica se existe
+if ( preg_match( $expressao, $texto, $encontrado ) ) {
+	// Retorna: A data 20/04/1987 foi encontrada no texto.
+	echo "A data $encontrado[0] foi encontrada no texto.";
+}
+
+<?php
+// Poema de Cecília Meireles - Prelúdio
+$preludio = 'Que tempo seria,
+ó sangue, ó flor
+em que se amaria
+de amor!
+
+Pérolas de espuma,
+de espuma e sal.
+Nunca mais nenhuma
+igual.';
+
+// Expressao regular
+$expressao = "/s/";
+
+// Altera o texto original
+$preludio = preg_replace(
+	$expressao, 
+	'',
+	$preludio
+);
+
+// Exibe o texto
+echo $preludio;
+```
+
+<?php
+$str = "Visit W3Schools";
+//$pattern = "/w3schools/"; // 0
+$pattern = "/w3schools/i"; // 1
+echo preg_match($pattern, $str); 
+
+
+<?php
+$pattern = "/exemplo/";
+$subject = "Casa com a palavra exemplo";
+$matches = array();
+
+// Executa nossa expressão
+$resultado = preg_match($pattern, $subject, $matches);
+
+if ($resultado === 1) {
+- print "casou<br>";
+- var_dump($matches);
+
+} else if ($resultado === 0) {
+- print "não casou";
+- var_dump($matches);
+
+} else if ($resultado === false) {
+- print "ocorreu um erro";
+
+}
+
+<?php  
+$regExp = "/[a-zA-Z]+ \d+/";  
+if (preg_match($regExp, "Januaury 26")) // This statement matches the regular expression with the string, If mathces then if statement executes, otherwise else statment.   
+{  
+   echo "The regular expression permit string.";  
+} else {  
+   echo "The regex pattern does not match with the string.";   
+}  
+
+
+Aqui para telefone de qualquer tipo:
+function validaTelefone($t){
+     return (bool) preg_match('/[0-9]{10,11}/', preg_replace('/\D/', '', $t));
+}
+Aqui apenas para celulares quem tiverem o 9º (nono) dígito preenchido:
+function validaCelular($c){
+     return (bool) preg_match('/[0-9]{2}[9][6789][0-9]{3}[0-9]{4}/', preg_replace('/\D/', '', $c));
+}
+
+
+Página 26
+
+Extração de Números de Texto
+
+Para extrair números de uma string:
+
+const numRegex = \d{1,3}(?:[.,]\d{3})*(?:[.,]\d+)?
+
+const nums = 'Exemplo 1234'.match(numRegex);
+
+Página 27
+
+Exemplos
+
+<script>  
+var string = "Our Site is helpfull for studying about technical courses.!";   
+pattern="technical";  
+var res = string.search(pattern); /* This statement stores the position of the pattern in a string, if it is found in a string. */  
+document.write("Position of the pattern in a string:");   
+document.write(res);   
+</script>  
+
+
+<script>  
+var string = "You are a Bad Student";   
+var pattern=/Bad/;  
+var replace="Good";  
+var res = string.replace(/Bad/,replace);- 
+/* The above statement replaces the Bad word from the string by the Good word using the replace method. */  
+document.write("After replacing the substring, the modified string is:"+ '<br>');  
+document.write(res);   
+</script>   
+
+
+Página 28
+
+Máscara
+
+<script>
+function format(mask, number) {
+   var s = ''+number, r = '';
+   for (var im=0, is = 0; im<mask.length && is<s.length; im++) {
+     r += mask.charAt(im)=='X' ? s.charAt(is++) : mask.charAt(im);
+   }
+   return r;
+}    
+
+console.log(format('XXXX.XXXX.XXXX-X', 1234213412341)); // esse primeiro é o que vc quer
+console.log(format('XX/XX/XX/XX/XX/XX,X', 1234213412341));
+console.log(format('XX muito XX manero XX.XX.XX.XX.X', 1234213412341));
+</script> 
+
+function formatar_valor(str) {
+    var split = str.match(/.{1,4}/g),          // divide a string em blocos de 4
+        join  = split.join('.');               // junta os blocos colando-os com um .
+
+    return join.replace(/\.(?!.*?\.)/, '-');   // substitui o ultimo . por um -
+}
+
+alert(formatar_valor('1234213412341'));        // devolve: 1234.2134.1234-1
+
+
+Página 29
+
+1. Retornar os nomes dos livros da tabels livros, onde o nome do livro se inicie com uma das letras F ou S
+
+SELECT livro
+FROM livros
+WHERE livro REGEXP '^[Me]';
+
+2. Trazer os livros cujos nomes não se iniciam nem com o caractere F, nem com o caractere S
+
+SELECT livro
+FROM livros
+WHERE livro REGEXP '^[^FS]';
+
+3. Retornar nomes de livros que finalizem com as letras n ou g:
+
+SELECT livro
+FROM livros
+WHERE livro REGEXP '[ng]$';
+
+4. Consultar os livros cujos nomes comecem com as letras F ou S, ou ainda com a sequência de caracteres Mi
+
+SELECT livro
+FROM livros
+WHERE livro REGEXP '^[FS]|Mi';
+
+
+

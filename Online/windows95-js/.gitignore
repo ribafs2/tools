@@ -1,0 +1,10 @@
+node_modules
+out
+src/images
+.DS_Store
+images
+images_new
+dist
+!.github/images
+*.code-workspace
+*.pfx

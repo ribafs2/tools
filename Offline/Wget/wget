@@ -1,0 +1,50 @@
+sudo nano /usr/local/bin/wgetd
+
+wget \
+     --recursive \
+     --no-clobber \
+     --page-requisites \
+     --html-extension \
+     --convert-links \
+     --restrict-file-names=windows \
+     --no-parent \
+         $1
+
+
+
+wget -rvx http://link
+
+wget -r --no-parent http://abc.tamu.edu/projects/tzivi/repository/revisions/2/raw/tzivi/
+
+wget -r -nH --cut-dirs=7 --reject="index.html*" \
+      http://abc.tamu.edu/projects/tzivi/repository/revisions/2/raw/tzivi/
+
+wget --mirror -pc --convert-links -P ./your-local-dir/ http://www.your-website.com
+
+wget -m -np -c --no-check-certificate -R "index.html*" "https://the-eye.eu/public/AudioBooks/Edgar%20Allan%20Poe%20-%2"
+
+Um diretório
+wget -r -nH --cut-dirs=7 --reject="index.html*" \
+      http://abc.tamu.edu/projects/tzivi/repository/revisions/2/raw/tzivi/
+
+
+Excluindo certo diretório
+
+
+
+wget -X directory_to_exclude[,other_directory_to_exclude] -r ftp://URL_ftp_server
+
+SERVER
+    |-logs
+    |-etc
+    |-cache
+    |-public_html
+      |-images
+      |-videos ( want to exclude )
+      |-files
+      |-audio  (want to exclude)
+
+wget -X /public_html/videos,/public_html/audio ftp:SERVER/public_html/*
+
+ou
+wget --exclude-directories=.svn -r ftp://path/to/src

@@ -1,0 +1,36 @@
+# assets
+
+Uma boa quantidade de assets sob domínio público: áudio, imagens, sprites, fontes e animações organizados por categoria
+
+## Como os reuni
+
+Estudando a criação de jogos, percebi que manter organizados bons assets é algo bem importante. Então comecei a organizar e coletar dos vários jogos que baixei para estudar. O resultado está aqui:
+
+São hoje - 14.956 (13/05/2024)
+
+- Animações
+- Áudio
+- Fontes
+- Imagens
+- Sprites
+- Texturas
+
+## Alguns grandes repositórios
+
+Alguns dos assets vieram de um destes
+
+https://opengameart.org/
+
+https://www.kenney.nl/
+
+https://br.freepik.com/
+
+https://www.maxon.net/en/zbrush
+
+https://freesound.org/
+
+https://mixkit.co/free-sound-effects/game/
+
+https://freesound.org/
+
+https://www.kenney.nl/

@@ -1,0 +1,105 @@
+Alguns exemplos usando PHP
+
+preg_match('/(foo)(bar)(baz)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+//var_dump($matches);exit;
+print $matches[0][0].'<br>';
+print $matches[1][0].'<br>';
+print $matches[2][0].'<br>';
+print $matches[3][0].'<br>';
+*/
+
+$subject = "abcdef";
+$pattern = '/^def/';
+preg_match($pattern, substr($subject,3), $matches, PREG_OFFSET_CAPTURE);
+var_dump($matches);
+
+$string = 'orato';
+if (preg_match('/^rato/', $string)) {
+    print 'A string comeca com "rato"';
+} else {
+    print 'A string nao comeca com "rato"';
+}
+
+$string = 'barato';
+if (preg_match('/rato$/', $string)) {
+    print 'A string termina com "rato"';
+} else {
+    print 'A string nao termina com "rato"';
+}
+
+$string = 'gato';
+if (preg_match('/rato|gato/', $string)) {
+    print 'A string contém gato';
+} else {
+    print 'A string não contém gato';
+}
+
+$string = 'gato';
+// Exemplo: checar se a string comeca com "r" ou "g", seguido de "at" e termina com "a" ou "o". Somente at é fixo
+if (preg_match('/^[rg]at[ao]$/', $string)) {
+    print 'Sim';
+} else {
+    print 'Não';
+}
+
+// Exemplo: checar se a string comeca com "x", seguido por uma letra minuscula, depois um numero, e termina com uma letra ou numero ou @
+if (preg_match('/^[x][[:lower:]][\d][a-z0-9@]$/', $string)) {
+    // Por exemplo: "xa0a", "xb11", "xb1@"
+}
+
+// Mesmo exemplo, mas usando apenas sequencias de escape
+if (preg_match('/^x\w\d[\w\d@]$/', $string)) {
+    // Por exemplo: "xa0a", "xb11", "xb1@"
+}
+
+// Exemplo: a string precisa comecar com "a" ou "b", depois seguir com qualquer caractere, exceto o "x" e "y"
+if (preg_match('/^[ab][^xy]$/', $string)) {
+    // Por exemplo: "a1", "bd"
+} else {
+    // Por exemplo: "ax", "ay", "bx", "by", "k1"
+}
+
+// Capturar o prefixo de uma placa de carro (3 letras) e o sufixo (4 numeros)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z][A-Z][A-Z])-([0-9][0-9][0-9][0-9])$/', $string, $partes)) {
+    echo $partes[0]; // ABC-1234
+    echo $partes[1]; // ABC
+    echo $partes[2]; // 1234
+}
+
+// Capturar o prefixo de uma placa de carro (3 letras)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z][A-Z][A-Z])-(?:[0-9][0-9][0-9][0-9])$/', $string, $partes)) {
+    echo $partes[0];         // ABC-1234
+    echo $partes[1];         // ABC
+}
+
+// Capturar a sigla de segunda-feira ou terça feira
+$string = 'terça-feira';
+if (preg_match('/^(?|(seg)unda|(ter)ça)-feira$/', $string, $partes)) {
+    echo $partes[0];         // ABC-1234
+    echo $partes[1];         // ter
+}
+
+// Capturar o prefixo de uma placa de carro (3 letras) e o sufixo (4 numeros)
+$string = 'ABC-1234';
+if (preg_match('/^([A-Z]{3})-([0-9]{4})$/', $string, $partes)) {
+    echo $partes[0]; // ABC-1234
+    echo $partes[1]; // ABC
+    echo $partes[2]; // 1234
+}
+
+// Checar se a string eh um CPF formatado
+if (preg_match('/^\d{3}\.\d{3}\.\d{3}-\d{2}$/', $string, $partes)) {
+    // O CPF esta formatado
+}
+
+// Checar se a string eh formada por 3 ou mais digitos, seguido ou nao de hifen,
+// seguido de um ou mais digitos, seguido de 0 ou mais letras
+if (preg_match('/^\d{3,}-?\d+[a-z]*$/', $string, $partes)) {
+    // Por exemplo: "1234", "123-4", "12345", "1234-567", "1234ab", "123-4a"
+} else {
+    // Por exemplo: "12", "1-2", "12-3", "123-", "123-a"
+}
+
+https://rubsphp.blogspot.com/2015/02/expressoes-regulares-em-php.html

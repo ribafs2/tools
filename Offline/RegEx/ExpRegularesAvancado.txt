@@ -1,0 +1,95 @@
+OS METACARACTERES
+
+Para saber como funcionam as Expressões Regulares precisamos primeiro conhecer os metacaracteres. Cada metacaractere é uma ferramenta que tem uma função específica. Eles servem para dar mais poder às pesquisas, formando padrões e posições impossíveis de se especificar usando somente caracteres normais.
+
+Os metacaracteres são pequenos pedacinhos simples que agrupados entre si, ou com caracteres normais, formam algo maior, uma expressão. O importante é compreender bem cada um individualmente, e depois apenas lê−los em seqüência.
+
+Para matar a curiosidade, aqui está os tão falados metacaracteres: . ? * + ^ $ | [ ] { } ( ) . Temos que nos acostumar com estes símbolos e seus respectivos nomes, então vai uma tabela com a meta e o mnemônico (nome).
+
+meta	mnemônico
+------------------------------
+.	ponto
+[]	lista
+[^]	lista negada
+?	opcional
+*	asterisco
++	mais
+{}	chaves
+^	circunflexo
+$	cifrão
+b	borda
+	escape
+|	ou
+()	grupo
+1	retrovisor
+
+REPRESENTANTES
+
+meta	mnemônico	    função
+------------------------------------------------------
+.	    ponto           um caractere qualquer
+[...]	lista           lista de caracteres permitidos
+[^...]	lista negada    lista de caracteres proibidos
+
+
+
+QUANTIFICADORES
+
+meta	mnemônico	    função
+---------------------------------------------------------------
+?	    opcional        zero ou um
+*	    asterisco       zero, um ou mais
++	    mais            um ou mais
+{n,m}	chaves          de n até m
+
+
+
+ÂNCORAS
+
+meta	mnemônico	    função
+------------------------------------------------------
+^	    circunflexo     início da linha
+$	    cifrão          fim da linha
+b	    borda           início ou fim de palavra
+
+
+
+OUTROS
+
+meta	mnemônico	    função
+------------------------------------------------------
+c	    escape          torna literal o caractere c
+|	    ou              ou um ou outro
+(...)	grupo           delimita um grupo
+1...9	retrovisor      texto casado nos grupos 1...9
+
+
+
+
+https://www.oficinadanet.com.br/artigo/programacao/o-que-sao-expressoes-regulares
+
+
+Em PHP
+
+(PHP 4, PHP 5, PHP 7, PHP 8)
+
+preg_match — Perform a regular expression match
+
+
+<?php
+preg_match('/(foo)(bar)(baz)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+print_r($matches);
+?>
+
+
+Case sensitividade
+
+<?php
+// O "i" após o delimitador padão indica uma busca case-insensitiva
+if (preg_match("/php/i", "PHP is the web scripting language of choice.")) {
+    echo "A match was found.";
+} else {
+    echo "A match was not found.";
+}
+
+

@@ -1,0 +1,39 @@
+Exemplos de uso
+/^[0-9]{5}[0-9]{3}$/
+
+60420440
+
+/^[0-9]{5}\-[0-9]{3}$/
+
+60420-440
+
+/^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$/
+
+121.068.484-39
+
+/(XPth)|(Ribafs)/g
+
+XPth
+ou
+Ribafs
+
+/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/
+
+12/12/2024
+
+
+/[a-z]{2,5}/g
+
+ri
+ou
+ribam
+
+
+/(Riba)[a-z]{2,5}/g
+
+Ribafs
+ou
+Ribaferreira (sobra mas ele não reclama, somente reclama quando falta. Segundo ele "o que abunda não atrapalha")
+
+Este abaixo não:
+RibaFS
